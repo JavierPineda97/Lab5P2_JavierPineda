@@ -6,6 +6,7 @@
 package realmadrid;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +30,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popmModificar = new javax.swing.JPopupMenu();
+        opcModificar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -45,6 +48,9 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
 
+        opcModificar.setText("Modificar");
+        popmModificar.add(opcModificar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblNombre.setText("Nombre");
@@ -55,7 +61,7 @@ public class Principal extends javax.swing.JFrame {
 
         SprEdad.setModel(new javax.swing.SpinnerNumberModel());
 
-        CmbNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Honduras", "Nicaragua", "El Salvador", "Costa Rica", "Panama", "Belice" }));
 
         lblApellido.setText("Apellido");
 
@@ -65,13 +71,24 @@ public class Principal extends javax.swing.JFrame {
                 btnAgregarListaMouseClicked(evt);
             }
         });
+        btnAgregarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarListaActionPerformed(evt);
+            }
+        });
 
         btnAgregarArbol.setText("Agregar a personal");
 
-        jlPersonas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jlPersonas.setModel(new DefaultListModel() );
+        jlPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlPersonasMouseClicked(evt);
+            }
+        });
+        jlPersonas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jlPersonasKeyPressed(evt);
+            }
         });
         jScrollPane1.setViewportView(jlPersonas);
 
@@ -98,8 +115,8 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(txtApellido)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(SprEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CmbNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(CmbNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(SprEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(122, 122, 122)
@@ -109,11 +126,11 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(21, 21, 21))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(btnAgregarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)))
-                .addContainerGap(512, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(201, 201, 201)))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,11 +155,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarLista)
                     .addComponent(btnAgregarArbol))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                .addGap(138, 138, 138))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,16 +179,41 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarListaMouseClicked
-        // TODO add your handling code here:
+       
         DefaultListModel modelo =(DefaultListModel) btnAgregarLista.getModel();
         modelo.addElement(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
-        
+         // TODO add your handling code here:
         jlPersonas.setModel(modelo);
         txtNombre.setText(" ");
         txtApellido.setText(" ");
         SprEdad.setValue(20);
         CmbNacionalidad.setSelectedIndex(0);
     }//GEN-LAST:event_btnAgregarListaMouseClicked
+
+    private void jlPersonasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jlPersonasKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_DELETE){
+            if(jlPersonas.getSelectedIndex()>=0){
+                DefaultListModel modelo=(DefaultListModel)jlPersonas.getModel();
+                modelo.remove(jlPersonas.getSelectedIndex());
+                jlPersonas.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Se elimino a la persona exitosamente!");
+            }
+        }
+    }//GEN-LAST:event_jlPersonasKeyPressed
+
+    private void btnAgregarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarListaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarListaActionPerformed
+
+    private void jlPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPersonasMouseClicked
+        // TODO add your handling code here:
+        if(jlPersonas.getSelectedIndex()>=0){
+            if(evt.isMetaDown()){
+                popup_modifier.show(evt.getComponent(),evt.getX(),evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jlPersonasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -222,6 +264,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNacionalidad;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JMenuItem opcModificar;
+    private javax.swing.JPopupMenu popmModificar;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
