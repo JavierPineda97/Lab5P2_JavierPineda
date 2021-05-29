@@ -251,13 +251,27 @@ public class Principal extends javax.swing.JFrame {
         DefaultMutableTreeNode anio;
         anio=new DefaultMutableTreeNode(new SimpleDateFormat("YYYY").format(new Date()));
         
-        DefaultMutableTreeNode nodo_jugadores;
+        DefaultMutableTreeNode edad;
+        edad=new DefaultMutableTreeNode((Integer)SprEdad.getValue());
         
-        DefaultMutableTreeNode nodo_Entrenadores;
+        DefaultMutableTreeNode jugadores;
+        jugadores=new DefaultMutableTreeNode(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
         
-        DefaultMutableTreeNode nodo_PrepFisicos;
+        DefaultMutableTreeNode Entrenadores;
+        Entrenadores=new DefaultMutableTreeNode(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
         
-        DefaultMutableTreeNode nodo_Psicologos;
+        DefaultMutableTreeNode PrepFisicos;
+        new DefaultMutableTreeNode(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
+        
+        DefaultMutableTreeNode Psicologos;
+        new DefaultMutableTreeNode(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
+        
+        anio.add(edad);
+        nodo_persona.add(anio);
+        raiz.add(nodo_persona);
+        m.reload();
+        txtNombre.setText("");
+        
         
     }//GEN-LAST:event_btnAgregarArbolMouseClicked
 
