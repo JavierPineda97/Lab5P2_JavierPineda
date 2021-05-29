@@ -5,8 +5,12 @@
  */
 package realmadrid;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -46,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlPersonas = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jtPersonas = new javax.swing.JTree();
 
         opcModificar.setText("Modificar");
         opcModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +87,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnAgregarArbol.setText("Agregar a personal");
+        btnAgregarArbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarArbolMouseClicked(evt);
+            }
+        });
 
         jlPersonas.setModel(new DefaultListModel() );
         jlPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,7 +106,9 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jlPersonas);
 
-        jScrollPane2.setViewportView(jTree1);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtPersonas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jtPersonas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,6 +240,27 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_opcModificarActionPerformed
 
+    private void btnAgregarArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarArbolMouseClicked
+        // TODO add your handling code here:
+        DefaultTreeModel m=(DefaultTreeModel)jlPersonas.getModel();
+        DefaultTreeModel raiz=(DefaultTreeModel)m.getRoot();
+        
+        DefaultMutableTreeNode nodo_persona;
+        nodo_persona =new DefaultMutableTreeNode(new Persona(txtNombre.getText(),txtApellido.getText(),(Integer)SprEdad.getValue(),(String)CmbNacionalidad.getSelectedItem()));
+        
+        DefaultMutableTreeNode anio;
+        anio=new DefaultMutableTreeNode(new SimpleDateFormat("YYYY").format(new Date()));
+        
+        DefaultMutableTreeNode nodo_jugadores;
+        
+        DefaultMutableTreeNode nodo_Entrenadores;
+        
+        DefaultMutableTreeNode nodo_PrepFisicos;
+        
+        DefaultMutableTreeNode nodo_Psicologos;
+        
+    }//GEN-LAST:event_btnAgregarArbolMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -272,8 +304,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTree jTree1;
     private javax.swing.JList<String> jlPersonas;
+    private javax.swing.JTree jtPersonas;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNacionalidad;
