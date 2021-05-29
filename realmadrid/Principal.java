@@ -49,6 +49,11 @@ public class Principal extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
 
         opcModificar.setText("Modificar");
+        opcModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcModificarActionPerformed(evt);
+            }
+        });
         popmModificar.add(opcModificar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,10 +215,19 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(jlPersonas.getSelectedIndex()>=0){
             if(evt.isMetaDown()){
-                popup_modifier.show(evt.getComponent(),evt.getX(),evt.getY());
+                popmModificar.show(evt.getComponent(),evt.getX(),evt.getY());
             }
         }
     }//GEN-LAST:event_jlPersonasMouseClicked
+
+    private void opcModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcModificarActionPerformed
+        // TODO add your handling code here:
+        if(jlPersonas.getSelectedIndex()>=0){
+            DefaultListModel modeloLISTA=(DefaultListModel)jlPersonas.getModel();
+            ((Persona)modeloLISTA.get(jlPersonas.getSelectedIndex())).setNombre(JOptionPane.showInputDialog("nombre"));
+            jlPersonas.setModel(modeloLISTA);
+        }
+    }//GEN-LAST:event_opcModificarActionPerformed
 
     /**
      * @param args the command line arguments
